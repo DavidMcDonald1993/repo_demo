@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Sample pre-push hook to prevent accidental pushes to protected branches.
+#
+# Usage:
+#   cp hooks/pre-push.sample .git/hooks/pre-push
+#   chmod +x .git/hooks/pre-push
+#
+# Edit PROTECTED_BRANCHES below to add other branches you want to protect.
+
+PROTECTED_BRANCHES=(master)
+
+while read local_ref local_sha remote_ref remote_sha
+do
+  # remote_ref is like refs/heads/master
+  branch=$(echo "${remote_ref}" | sed 's|refs/heads/||')
+  for p in "${PROTECTED_BRANCHES[@]}"; do
+    if [ "${branch}" = "${p}" ]; then
+      echo ""
+      echo "ERROR: Direct pushes to '${p}' are blocked by local policy."
+      echo "Create a branch and open a pull request instead:"
+      echo "  git checkout -b my-change"
+      echo "  git push origin my-change"
+      echo ""
+      exit 1
+    fi
+  done
+done
+
+exit 0
