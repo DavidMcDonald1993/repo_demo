@@ -1,0 +1,55 @@
+[project]
+name = "repo_demo"
+version = "0.0.14"
+description = "Demo repo"
+authors = [{ name = "David McDonald", email = "davemcdonald93@gmail.com@" }]
+requires-python = ">=3.10"
+readme = "README.md"
+dependencies = [
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=7.4.3",
+    "pre-commit>=4.1.0",
+    "ruff>=0.11.6",
+    "mypy>=1.11.2",
+    "pytest-lazy-fixture>=0.6.3",
+]
+
+[tool.uv]
+resolution = "lowest-direct"
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple/"
+default = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+# Select rule sets to enable.
+# E = pycodestyle errors
+# W = pycodestyle warnings
+# F = pyflakes
+# I = isort
+# D = pydocstyle (for docstring checks)
+select = ["E", "W", "F", "I", "D"]
+
+# Ignore specific rules.
+ignore = [
+    "D100", # Missing docstring in public module
+    "D104"  # Missing docstring in public package
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore all directories named `tests`.
+"tests/**" = ["D"]
+# Other ignore rules for the linter
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
