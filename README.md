@@ -1,4 +1,4 @@
-# repo_demo
+# Repo Demo
 
 This repository is a small Python project scaffold with developer convenience targets and CI hooks.
 
