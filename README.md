@@ -57,6 +57,20 @@ pre-commit install
 pre-commit run --all-files   # to run hooks over the full repo once
 ```
 
+3.5 Local pre-push hook sample
+------------------------------
+
+This repository includes a sample local pre-push hook at `hooks/pre-push.sample`. It prevents accidental direct pushes to protected branches (by default `master`). This is a local safety net only — it must be copied into `.git/hooks/pre-push` and made executable in each clone.
+
+To enable the sample hook in your local clone:
+
+```bash
+cp hooks/pre-push.sample .git/hooks/pre-push
+chmod +x .git/hooks/pre-push
+```
+
+You can edit `hooks/pre-push.sample` to add other protected branches.
+
 4. Run the full checks locally:
 
 ```bash
@@ -77,20 +91,7 @@ CI notes
 	run: pre-commit run --all-files ruff mypy end-of-file-fixer
 ```
 
-Next steps and maintenance
---------------------------
-
-- Pin `rev` values in `.pre-commit-config.yaml` to specific tags (already done) and update them periodically.
-- Consider adding a `Makefile` helper target to install `pre-commit` and optionally `gitleaks` for developers.
-- Expand the `tests/` folder and add CI matrix builds if you need to test multiple Python versions.
-
-Contact / author
-----------------
-
-This project scaffold was created by the repository owner.
-
 License
 -------
 
 See `LICENSE` for license terms.
-# repo_demo
