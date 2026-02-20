@@ -1,15 +1,20 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v6.0.0
     hooks:
       - id: end-of-file-fixer
+        name: end-of-file-fixer
       - id: trailing-whitespace
+        name: trailing-whitespace
       - id: check-yaml
+        name: check-yaml
       - id: check-added-large-files
+        name: check-added-large-files
       - id: check-merge-conflict
+        name: my name
 
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.19.0
+    rev: v8.30.0
     hooks:
       - id: gitleaks
         name: gitleaks scan
